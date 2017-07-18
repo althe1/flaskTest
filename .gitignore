@@ -1,0 +1,25 @@
+# VIM
+*.swp
+
+# Python
+__pycache__/
+ojai/__pycache__/
+*.py[cod]
+
+# Virtualenv
+venv
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
+.venv
+pip-selfcheck.json
+
+# Config
+env.json
+config/prod.json
+config/stage.json
