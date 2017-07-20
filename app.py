@@ -1,10 +1,25 @@
-from flask import Flask
-from flask_restful import Api
-from resources.todo import Todo
-from resources.todolist import TodoList
+from flask import Flask, render_template
+from flask_script import Manager
+from flask_bootstrap import Bootstrap
+from flask_moment import Moment
+from datetime import datetime
 
 app = Flask(__name__)
-api = Api(app)
+manager = Manager(app)
+bootstrap = Bootstrap(app)
+moment = Moment(app)
 
-api.add_resource(Todo, '/Todo', '/Todo/<str:id>')
-api.add_resource(TodoList, '/TodoList', '/TodoList/<str:id>')
+@app.route('/')
+def index():
+  return render_template('index.html', current_time=datetime.utcnow())
+
+@app.route('/user/<name>')
+def user(name):
+  return render_template('user.html', name=name)
+
+@app.errorhandler(404)
+def page_not_found(e):
+  return render_template('404.html'), 404
+
+if __name__ == '__main__':
+  manager.run()
